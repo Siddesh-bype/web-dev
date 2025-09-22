@@ -1,0 +1,1022 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Career Craftly - AI & Tech Innovation Club</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: 'Inter', -apple-system, BlinkMacSystemFont, sans-serif;
+            background: linear-gradient(135deg, #f8fafc 0%, #e2e8f0 100%);
+            color: #1e293b;
+            overflow-x: hidden;
+        }
+
+        /* Animated background particles */
+        .particles {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            pointer-events: none;
+            z-index: 1;
+        }
+
+        .particle {
+            position: absolute;
+            width: 3px;
+            height: 3px;
+            background: linear-gradient(45deg, #ec4899, #f97316);
+            border-radius: 50%;
+            animation: float 8s ease-in-out infinite;
+            opacity: 0.6;
+        }
+
+        @keyframes float {
+            0%, 100% { transform: translateY(0px) rotate(0deg); opacity: 0.3; }
+            50% { transform: translateY(-30px) rotate(180deg); opacity: 0.8; }
+        }
+
+        /* Navigation */
+        .navbar {
+            position: fixed;
+            top: 0;
+            width: 100%;
+            padding: 20px 50px;
+            background: rgba(255, 255, 255, 0.95);
+            backdrop-filter: blur(20px);
+            border-bottom: 1px solid rgba(0, 0, 0, 0.05);
+            box-shadow: 0 4px 20px rgba(0, 0, 0, 0.05);
+            z-index: 1000;
+            transition: all 0.3s ease;
+        }
+
+        .navbar.scrolled {
+            padding: 15px 50px;
+            background: rgba(255, 255, 255, 0.98);
+            box-shadow: 0 8px 30px rgba(0, 0, 0, 0.1);
+        }
+
+        .nav-container {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            max-width: 1200px;
+            margin: 0 auto;
+        }
+
+        .logo {
+            display: flex;
+            align-items: center;
+            gap: 15px;
+            text-decoration: none;
+            transition: all 0.3s ease;
+        }
+
+        .logo:hover {
+            transform: scale(1.05);
+        }
+
+        .logo-icon {
+            font-size: 36px;
+            font-weight: 900;
+            background: linear-gradient(45deg, #ec4899, #f97316);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            position: relative;
+            animation: logoGlow 3s ease-in-out infinite alternate;
+        }
+
+        @keyframes logoGlow {
+            from { 
+                filter: drop-shadow(0 0 10px rgba(236, 72, 153, 0.4));
+                transform: scale(1);
+            }
+            to { 
+                filter: drop-shadow(0 0 20px rgba(249, 115, 22, 0.6));
+                transform: scale(1.02);
+            }
+        }
+
+        .logo-text {
+            display: flex;
+            flex-direction: column;
+        }
+
+        .logo-main {
+            font-size: 24px;
+            font-weight: 700;
+            background: linear-gradient(45deg, #ec4899, #f97316);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            line-height: 1;
+        }
+
+        .logo-tagline {
+            font-size: 11px;
+            color: #64748b;
+            font-weight: 500;
+            margin-top: 2px;
+            letter-spacing: 0.5px;
+        }
+
+        .nav-links {
+            display: flex;
+            gap: 30px;
+            list-style: none;
+        }
+
+        .nav-links a {
+            color: #475569;
+            text-decoration: none;
+            font-weight: 500;
+            transition: all 0.3s ease;
+            position: relative;
+            padding: 5px 0;
+        }
+
+        .nav-links a::after {
+            content: '';
+            position: absolute;
+            bottom: 0;
+            left: 0;
+            width: 0;
+            height: 2px;
+            background: linear-gradient(45deg, #ec4899, #f97316);
+            transition: width 0.3s ease;
+        }
+
+        .nav-links a:hover {
+            color: #ec4899;
+        }
+
+        .nav-links a:hover::after {
+            width: 100%;
+        }
+
+        /* Hero Section */
+        .hero {
+            height: 100vh;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            text-align: center;
+            position: relative;
+            z-index: 2;
+            background: radial-gradient(circle at center, rgba(236, 72, 153, 0.05) 0%, transparent 70%);
+        }
+
+        .hero-content {
+            max-width: 800px;
+            animation: fadeInUp 1s ease;
+        }
+
+        .hero-logo {
+            margin-bottom: 30px;
+            animation: heroLogoFloat 4s ease-in-out infinite;
+        }
+
+        .hero-logo-icon {
+            font-size: 120px;
+            font-weight: 900;
+            background: linear-gradient(45deg, #ec4899, #f97316, #eab308);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            display: block;
+            margin-bottom: 10px;
+            filter: drop-shadow(0 0 30px rgba(236, 72, 153, 0.3));
+        }
+
+        .hero-logo-text {
+            font-size: 3rem;
+            font-weight: 800;
+            background: linear-gradient(135deg, #ec4899 0%, #f97316 50%, #eab308 100%);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            margin-bottom: 5px;
+        }
+
+        .hero-tagline {
+            font-size: 1rem;
+            color: #64748b;
+            font-weight: 500;
+            letter-spacing: 1px;
+        }
+
+        @keyframes heroLogoFloat {
+            0%, 100% { transform: translateY(0px); }
+            50% { transform: translateY(-10px); }
+        }
+
+        .hero p {
+            font-size: 1.2rem;
+            margin-bottom: 30px;
+            color: #475569;
+            line-height: 1.6;
+            margin-top: 20px;
+        }
+
+        .cta-button {
+            display: inline-block;
+            padding: 18px 45px;
+            background: linear-gradient(45deg, #ec4899, #f97316);
+            color: white;
+            text-decoration: none;
+            border-radius: 50px;
+            font-weight: 600;
+            transition: all 0.3s ease;
+            position: relative;
+            overflow: hidden;
+            box-shadow: 0 10px 30px rgba(236, 72, 153, 0.3);
+        }
+
+        .cta-button::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: -100%;
+            width: 100%;
+            height: 100%;
+            background: linear-gradient(90deg, transparent, rgba(255, 255, 255, 0.4), transparent);
+            transition: left 0.6s ease;
+        }
+
+        .cta-button:hover::before {
+            left: 100%;
+        }
+
+        .cta-button:hover {
+            transform: translateY(-3px);
+            box-shadow: 0 15px 40px rgba(236, 72, 153, 0.4);
+        }
+
+        @keyframes fadeInUp {
+            from {
+                opacity: 0;
+                transform: translateY(50px);
+            }
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+
+        /* Sections */
+        .section {
+            padding: 100px 50px;
+            max-width: 1200px;
+            margin: 0 auto;
+            position: relative;
+            z-index: 2;
+        }
+
+        .section h2 {
+            font-size: 3rem;
+            text-align: center;
+            margin-bottom: 50px;
+            background: linear-gradient(45deg, #ec4899, #f97316);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            position: relative;
+        }
+
+        .section h2::after {
+            content: '';
+            position: absolute;
+            bottom: -10px;
+            left: 50%;
+            transform: translateX(-50%);
+            width: 100px;
+            height: 4px;
+            background: linear-gradient(45deg, #ec4899, #f97316);
+            border-radius: 2px;
+        }
+
+        /* Domains Grid */
+        .domains-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(350px, 1fr));
+            gap: 30px;
+            margin-top: 50px;
+        }
+
+        .domain-card {
+            background: rgba(255, 255, 255, 0.8);
+            backdrop-filter: blur(20px);
+            border: 1px solid rgba(236, 72, 153, 0.1);
+            border-radius: 20px;
+            padding: 30px;
+            transition: all 0.3s ease;
+            position: relative;
+            overflow: hidden;
+            box-shadow: 0 5px 20px rgba(0, 0, 0, 0.05);
+        }
+
+        .domain-card::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 3px;
+            background: linear-gradient(90deg, #ec4899, #f97316, #eab308);
+            transform: scaleX(0);
+            transition: transform 0.3s ease;
+        }
+
+        .domain-card:hover {
+            transform: translateY(-10px);
+            box-shadow: 0 20px 40px rgba(236, 72, 153, 0.15);
+            background: rgba(255, 255, 255, 0.95);
+        }
+
+        .domain-card:hover::before {
+            transform: scaleX(1);
+        }
+
+        .domain-card h3 {
+            font-size: 1.5rem;
+            margin-bottom: 15px;
+            color: #ec4899;
+            display: flex;
+            align-items: center;
+            gap: 10px;
+        }
+
+        .domain-card p {
+            color: #64748b;
+            line-height: 1.6;
+        }
+
+        /* Benefits Grid */
+        .benefits-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 25px;
+            margin-top: 50px;
+        }
+
+        .benefit-item {
+            background: rgba(255, 255, 255, 0.7);
+            padding: 25px;
+            border-radius: 15px;
+            border-left: 5px solid #ec4899;
+            transition: all 0.3s ease;
+            box-shadow: 0 5px 15px rgba(0, 0, 0, 0.05);
+        }
+
+        .benefit-item:hover {
+            background: rgba(255, 255, 255, 0.9);
+            transform: translateX(10px);
+            box-shadow: 0 10px 25px rgba(236, 72, 153, 0.1);
+        }
+
+        .benefit-item h3 {
+            color: #ec4899;
+            margin-bottom: 10px;
+            display: flex;
+            align-items: center;
+            gap: 10px;
+        }
+
+        .benefit-item p {
+            color: #64748b;
+        }
+
+        /* About Section */
+        .about-content {
+            text-align: center;
+            font-size: 1.1rem;
+            line-height: 1.8;
+            color: #475569;
+            background: rgba(255, 255, 255, 0.6);
+            padding: 40px;
+            border-radius: 20px;
+            box-shadow: 0 10px 30px rgba(0, 0, 0, 0.05);
+        }
+
+        /* Contact Form */
+        .contact-form {
+            max-width: 600px;
+            margin: 0 auto;
+            background: rgba(255, 255, 255, 0.8);
+            backdrop-filter: blur(20px);
+            border: 1px solid rgba(236, 72, 153, 0.1);
+            border-radius: 20px;
+            padding: 40px;
+            box-shadow: 0 10px 30px rgba(0, 0, 0, 0.05);
+        }
+
+        .form-group {
+            margin-bottom: 20px;
+        }
+
+        .form-group input,
+        .form-group textarea {
+            width: 100%;
+            padding: 15px;
+            background: rgba(255, 255, 255, 0.9);
+            border: 2px solid rgba(236, 72, 153, 0.2);
+            border-radius: 10px;
+            color: #1e293b;
+            font-size: 16px;
+            transition: all 0.3s ease;
+        }
+
+        .form-group input:focus,
+        .form-group textarea:focus {
+            outline: none;
+            border-color: #ec4899;
+            box-shadow: 0 0 20px rgba(236, 72, 153, 0.2);
+            background: white;
+        }
+
+        .form-group input::placeholder,
+        .form-group textarea::placeholder {
+            color: #94a3b8;
+        }
+
+        .submit-btn {
+            width: 100%;
+            padding: 18px;
+            background: linear-gradient(45deg, #ec4899, #f97316);
+            border: none;
+            border-radius: 10px;
+            color: white;
+            font-size: 16px;
+            font-weight: 600;
+            cursor: pointer;
+            transition: all 0.3s ease;
+            box-shadow: 0 5px 20px rgba(236, 72, 153, 0.3);
+        }
+
+        .submit-btn:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 10px 30px rgba(236, 72, 153, 0.4);
+        }
+
+        /* Footer */
+        .footer {
+            background: rgba(255, 255, 255, 0.9);
+            text-align: center;
+            padding: 40px;
+            border-top: 1px solid rgba(0, 0, 0, 0.05);
+            color: #64748b;
+        }
+
+        /* Responsive Design */
+        @media (max-width: 768px) {
+            .navbar {
+                padding: 15px 20px;
+            }
+            
+            .logo-icon {
+                font-size: 28px;
+            }
+            
+            .logo-main {
+                font-size: 18px;
+            }
+            
+            .logo-tagline {
+                font-size: 9px;
+            }
+            
+            .hero-logo-icon {
+                font-size: 80px;
+            }
+            
+            .hero-logo-text {
+                font-size: 2rem;
+            }
+            
+            .section {
+                padding: 50px 20px;
+            }
+            
+            .section h2 {
+                font-size: 2rem;
+            }
+            
+            .domains-grid {
+                grid-template-columns: 1fr;
+            }
+
+            .nav-links {
+                display: none;
+            }
+        }
+
+        /* Loading Animation */
+        .loading {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: linear-gradient(135deg, #f8fafc 0%, #e2e8f0 100%);
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            align-items: center;
+            z-index: 9999;
+            transition: opacity 0.5s ease;
+        }
+
+        .loading.hidden {
+            opacity: 0;
+            pointer-events: none;
+        }
+
+        .loading-logo {
+            font-size: 80px;
+            font-weight: 900;
+            background: linear-gradient(45deg, #ec4899, #f97316);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            margin-bottom: 20px;
+            animation: loadingPulse 2s ease-in-out infinite;
+        }
+
+        .spinner {
+            width: 60px;
+            height: 60px;
+            border: 4px solid rgba(236, 72, 153, 0.1);
+            border-top: 4px solid #ec4899;
+            border-radius: 50%;
+            animation: spin 1s linear infinite;
+        }
+
+        @keyframes loadingPulse {
+            0%, 100% { transform: scale(1); }
+            50% { transform: scale(1.05); }
+        }
+
+        @keyframes spin {
+            0% { transform: rotate(0deg); }
+            100% { transform: rotate(360deg); }
+        }
+
+        /* Success Message */
+        .success-message {
+            background: linear-gradient(45deg, #10b981, #059669);
+            color: white;
+            padding: 15px;
+            border-radius: 10px;
+            margin-top: 20px;
+            text-align: center;
+            opacity: 0;
+            transform: translateY(-20px);
+            transition: all 0.3s ease;
+            box-shadow: 0 5px 20px rgba(16, 185, 129, 0.3);
+        }
+
+        .success-message.show {
+            opacity: 1;
+            transform: translateY(0);
+        }
+
+        /* Enhanced visual effects */
+        .section:nth-child(even) {
+            background: rgba(255, 255, 255, 0.3);
+            border-radius: 40px;
+            margin: 50px auto;
+        }
+
+        .floating-element {
+            position: absolute;
+            width: 200px;
+            height: 200px;
+            background: linear-gradient(45deg, rgba(236, 72, 153, 0.1), rgba(249, 115, 22, 0.1));
+            border-radius: 50%;
+            filter: blur(40px);
+            animation: floatingBg 10s ease-in-out infinite;
+            z-index: 0;
+        }
+
+        @keyframes floatingBg {
+            0%, 100% { transform: translate(0, 0) rotate(0deg); }
+            33% { transform: translate(50px, -50px) rotate(120deg); }
+            66% { transform: translate(-50px, 50px) rotate(240deg); }
+        }
+    </style>
+</head>
+<body>
+    <!-- Loading Screen -->
+    <div class="loading" id="loading">
+        <div class="loading-logo">CC</div>
+        <div class="spinner"></div>
+    </div>
+
+    <!-- Floating Background Elements -->
+    <div class="floating-element" style="top: 10%; left: 10%;"></div>
+    <div class="floating-element" style="top: 60%; right: 10%; animation-delay: -3s;"></div>
+    <div class="floating-element" style="bottom: 20%; left: 30%; animation-delay: -6s;"></div>
+
+    <!-- Animated Background -->
+    <div class="particles" id="particles"></div>
+
+    <!-- Navigation -->
+    <nav class="navbar" id="navbar">
+        <div class="nav-container">
+            <a href="#home" class="logo">
+                <div class="logo-icon">CC</div>
+                <div class="logo-text">
+                    <div class="logo-main">CAREER CRAFTLY</div>
+                    <div class="logo-tagline">Crafting Digital Success, Intelligently</div>
+                </div>
+            </a>
+            <ul class="nav-links">
+                <li><a href="#home">Home</a></li>
+                <li><a href="#about">About</a></li>
+                <li><a href="#domains">Domains</a></li>
+                <li><a href="#benefits">Benefits</a></li>
+                <li><a href="#contact">Join Us</a></li>
+            </ul>
+        </div>
+    </nav>
+
+    <!-- Hero Section -->
+    <section class="hero" id="home">
+        <div class="hero-content">
+            <div class="hero-logo">
+                <div class="hero-logo-icon">CC</div>
+                <div class="hero-logo-text">CAREER CRAFTLY</div>
+                <div class="hero-tagline">Crafting Digital Success, Intelligently</div>
+            </div>
+            <p>AI & Tech Innovation Club - Empowering students with future-ready skills through practical learning, industrial projects, and direct exposure to the tech world.</p>
+            <a href="#contact" class="cta-button">Join Our Club</a>
+        </div>
+    </section>
+
+    <!-- About Section -->
+    <section class="section" id="about">
+        <h2>About Us</h2>
+        <div class="about-content">
+            Career Craftly is an AI-based student club launched under the guidance and sponsorship of Career Craftly Pvt. Ltd. 
+            Our mission is to provide hands-on workshops, training, and projects that give students practical industry exposure 
+            rather than just theory. We connect members with companies, mentors, and internships while organizing industrial 
+            projects, hackathons, and flagship events.
+        </div>
+    </section>
+
+    <!-- Domains Section -->
+    <section class="section" id="domains">
+        <h2>What We Offer</h2>
+        <div class="domains-grid">
+            <div class="domain-card">
+                <h3><span>🤖</span> AI & Machine Learning</h3>
+                <p>Hands-on mini-projects with guidance in artificial intelligence and machine learning technologies.</p>
+            </div>
+            <div class="domain-card">
+                <h3><span>🌐</span> AI-Powered Web Development</h3>
+                <p>Build websites faster using AI tools combined with modern coding practices and frameworks.</p>
+            </div>
+            <div class="domain-card">
+                <h3><span>📱</span> App Development</h3>
+                <p>Learn modern frameworks to create real Android and iOS applications from scratch.</p>
+            </div>
+            <div class="domain-card">
+                <h3><span>🔧</span> Google Extensions</h3>
+                <p>Create powerful and useful Chrome extensions with modern web technologies.</p>
+            </div>
+            <div class="domain-card">
+                <h3><span>🔒</span> Cybersecurity</h3>
+                <p>Learn the basics of online safety and ethical hacking tools for digital security.</p>
+            </div>
+            <div class="domain-card">
+                <h3><span>🎨</span> UI/UX Design</h3>
+                <p>Design beautiful, user-friendly applications and websites with modern design principles.</p>
+            </div>
+            <div class="domain-card">
+                <h3><span>🎮</span> Game Development</h3>
+                <p>Create interactive games using trending game engines and development frameworks.</p>
+            </div>
+            <div class="domain-card">
+                <h3><span>🚀</span> Emerging Technologies</h3>
+                <p>Stay ahead with the latest tech trends and emerging domains as the club grows.</p>
+            </div>
+        </div>
+    </section>
+
+    <!-- Benefits Section -->
+    <section class="section" id="benefits">
+        <h2>Member Benefits</h2>
+        <div class="benefits-grid">
+            <div class="benefit-item">
+                <h3><span>🏆</span> Certificates</h3>
+                <p>From workshops, events, and partner companies</p>
+            </div>
+            <div class="benefit-item">
+                <h3><span>💼</span> Internship Opportunities</h3>
+                <p>Direct connections with companies and Career Craftly</p>
+            </div>
+            <div class="benefit-item">
+                <h3><span>🚀</span> Career Growth</h3>
+                <p>Direct interviews with Career Craftly and partner companies</p>
+            </div>
+            <div class="benefit-item">
+                <h3><span>📚</span> Hands-on Projects</h3>
+                <p>From small tasks to real industrial-level projects</p>
+            </div>
+            <div class="benefit-item">
+                <h3><span>🎯</span> Workshops & Webinars</h3>
+                <p>On trending tools and technologies</p>
+            </div>
+            <div class="benefit-item">
+                <h3><span>👥</span> Mentorship</h3>
+                <p>Domain heads and experts guide in every field</p>
+            </div>
+        </div>
+    </section>
+
+    <!-- Contact Section -->
+    <section class="section" id="contact">
+        <h2>Join Our Club</h2>
+        <form class="contact-form" id="contactForm">
+            <div class="form-group">
+                <input type="text" id="name" name="name" placeholder="Full Name" required>
+            </div>
+            <div class="form-group">
+                <input type="email" id="email" name="email" placeholder="Email Address" required>
+            </div>
+            <div class="form-group">
+                <input type="tel" id="phone" name="phone" placeholder="Phone Number" required>
+            </div>
+            <div class="form-group">
+                <input type="text" id="college" name="college" placeholder="College/University" required>
+            </div>
+            <div class="form-group">
+                <textarea id="interests" name="interests" placeholder="Areas of Interest (AI, Web Dev, App Dev, etc.)" rows="4" required></textarea>
+            </div>
+            <button type="submit" class="submit-btn">Submit Application</button>
+            <div class="success-message" id="successMessage">
+                🎉 Application submitted successfully! We'll contact you soon.
+            </div>
+        </form>
+    </section>
+
+    <!-- Footer -->
+    <footer class="footer">
+        <div style="display: flex; justify-content: center; align-items: center; gap: 15px; margin-bottom: 20px;">
+            <div style="font-size: 24px; font-weight: 900; background: linear-gradient(45deg, #ec4899, #f97316); -webkit-background-clip: text; -webkit-text-fill-color: transparent;">CC</div>
+            <div>
+                <div style="font-weight: 600; color: #475569;">CAREER CRAFTLY</div>
+                <div style="font-size: 10px; color: #94a3b8;">Crafting Digital Success, Intelligently</div>
+            </div>
+        </div>
+        <p>&copy; 2025 Career Craftly AI & Tech Innovation Club. Powered by Career Craftly Pvt. Ltd.</p>
+    </footer>
+
+    <script>
+        // Simulated Backend Database
+        class Database {
+            constructor() {
+                this.members = [];
+                this.applications = [];
+            }
+
+            addApplication(data) {
+                const application = {
+                    id: Date.now(),
+                    ...data,
+                    timestamp: new Date().toISOString(),
+                    status: 'pending'
+                };
+                this.applications.push(application);
+                return application;
+            }
+
+            getApplications() {
+                return this.applications;
+            }
+
+            updateApplicationStatus(id, status) {
+                const app = this.applications.find(a => a.id === id);
+                if (app) {
+                    app.status = status;
+                    return app;
+                }
+                return null;
+            }
+        }
+
+        // Initialize database
+        const db = new Database();
+
+        // Loading Animation
+        window.addEventListener('load', () => {
+            setTimeout(() => {
+                document.getElementById('loading').classList.add('hidden');
+            }, 2000);
+        });
+
+        // Create animated particles
+        function createParticles() {
+            const particles = document.getElementById('particles');
+            const particleCount = 40;
+
+            for (let i = 0; i < particleCount; i++) {
+                const particle = document.createElement('div');
+                particle.className = 'particle';
+                particle.style.left = Math.random() * 100 + '%';
+                particle.style.top = Math.random() * 100 + '%';
+                particle.style.animationDelay = Math.random() * 8 + 's';
+                particle.style.animationDuration = (Math.random() * 4 + 4) + 's';
+                particles.appendChild(particle);
+            }
+        }
+
+        // Navbar scroll effect
+        window.addEventListener('scroll', () => {
+            const navbar = document.getElementById('navbar');
+            if (window.scrollY > 50) {
+                navbar.classList.add('scrolled');
+            } else {
+                navbar.classList.remove('scrolled');
+            }
+        });
+
+        // Smooth scrolling for navigation links
+        document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+            anchor.addEventListener('click', function (e) {
+                e.preventDefault();
+                const target = document.querySelector(this.getAttribute('href'));
+                if (target) {
+                    target.scrollIntoView({
+                        behavior: 'smooth',
+                        block: 'start'
+                    });
+                }
+            });
+        });
+
+        // Form submission with animation
+        document.getElementById('contactForm').addEventListener('submit', function(e) {
+            e.preventDefault();
+            
+            const formData = new FormData(this);
+            const applicationData = {
+                name: formData.get('name'),
+                email: formData.get('email'),
+                phone: formData.get('phone'),
+                college: formData.get('college'),
+                interests: formData.get('interests')
+            };
+
+            // Add to database
+            const application = db.addApplication(applicationData);
+            console.log('Application submitted:', application);
+
+            // Show success message
+            const successMessage = document.getElementById('successMessage');
+            successMessage.classList.add('show');
+            
+            // Reset form
+            this.reset();
+            
+            // Hide success message after 5 seconds
+            setTimeout(() => {
+                successMessage.classList.remove('show');
+            }, 5000);
+        });
+
+        // Intersection Observer for animations
+        const observerOptions = {
+            threshold: 0.1,
+            rootMargin: '0px 0px -50px 0px'
+        };
+
+        const observer = new IntersectionObserver((entries) => {
+            entries.forEach(entry => {
+                if (entry.isIntersecting) {
+                    entry.target.style.animation = 'fadeInUp 0.8s ease forwards';
+                }
+            });
+        }, observerOptions);
+
+        // Observe all sections for scroll animations
+        document.addEventListener('DOMContentLoaded', () => {
+            const sections = document.querySelectorAll('.section, .domain-card, .benefit-item');
+            sections.forEach(section => {
+                observer.observe(section);
+            });
+        });
+
+        // Enhanced logo hover effects
+        document.querySelectorAll('.logo').forEach(logo => {
+            logo.addEventListener('mouseenter', () => {
+                logo.style.transform = 'scale(1.05) rotate(2deg)';
+            });
+            
+            logo.addEventListener('mouseleave', () => {
+                logo.style.transform = 'scale(1) rotate(0deg)';
+            });
+        });
+
+        // Dynamic gradient background
+        function updateGradient() {
+            const time = Date.now() * 0.0001;
+            const gradient = `linear-gradient(${135 + Math.sin(time) * 10}deg, 
+                hsl(${200 + Math.sin(time) * 20}, 20%, 97%) 0%, 
+                hsl(${220 + Math.cos(time) * 15}, 15%, 92%) 100%)`;
+            document.body.style.background = gradient;
+        }
+
+        // Update gradient every 100ms for subtle animation
+        setInterval(updateGradient, 100);
+
+        // Initialize particles and effects
+        createParticles();
+
+        // Add subtle parallax effect to hero
+        window.addEventListener('scroll', () => {
+            const scrolled = window.pageYOffset;
+            const hero = document.querySelector('.hero-content');
+            if (hero) {
+                hero.style.transform = `translateY(${scrolled * 0.1}px)`;
+            }
+        });
+
+        // Add typing effect to hero tagline
+        function typeWriter(element, text, speed = 100) {
+            let i = 0;
+            element.innerHTML = '';
+            
+            function type() {
+                if (i < text.length) {
+                    element.innerHTML += text.charAt(i);
+                    i++;
+                    setTimeout(type, speed);
+                }
+            }
+            type();
+        }
+
+        // Start typing effect after loading
+        setTimeout(() => {
+            const heroTagline = document.querySelector('.hero-tagline');
+            if (heroTagline) {
+                const originalText = heroTagline.textContent;
+                typeWriter(heroTagline, originalText, 80);
+            }
+        }, 2500);
+
+        // Add random sparkle effects
+        function createSparkle() {
+            const sparkle = document.createElement('div');
+            sparkle.innerHTML = '✨';
+            sparkle.style.position = 'fixed';
+            sparkle.style.left = Math.random() * window.innerWidth + 'px';
+            sparkle.style.top = Math.random() * window.innerHeight + 'px';
+            sparkle.style.fontSize = (Math.random() * 10 + 10) + 'px';
+            sparkle.style.pointerEvents = 'none';
+            sparkle.style.zIndex = '999';
+            sparkle.style.animation = 'sparkleAnim 2s ease-out forwards';
+            
+            document.body.appendChild(sparkle);
+            
+            setTimeout(() => {
+                sparkle.remove();
+            }, 2000);
+        }
+
+        // Add sparkle animation CSS
+        const sparkleStyle = document.createElement('style');
+        sparkleStyle.textContent = `
+            @keyframes sparkleAnim {
+                0% { opacity: 0; transform: scale(0) rotate(0deg); }
+                50% { opacity: 1; transform: scale(1) rotate(180deg); }
+                100% { opacity: 0; transform: scale(0) rotate(360deg); }
+            }
+        `;
+        document.head.appendChild(sparkleStyle);
+
+        // Create sparkles randomly
+        setInterval(createSparkle, 3000);
+
+        // Enhanced card interactions
+        document.querySelectorAll('.domain-card, .benefit-item').forEach(card => {
+            card.addEventListener('mouseenter', (e) => {
+                const rect = card.getBoundingClientRect();
+                const centerX = rect.left + rect.width / 2;
+                const centerY = rect.top + rect.height / 2;
+                
+                card.style.transformOrigin = `${centerX}px ${centerY}px`;
+                card.style.transform = 'translateY(-10px) scale(1.02)';
+            });
+            
+            card.addEventListener('mouseleave', () => {
+                card.style.transform = 'translateY(0) scale(1)';
+            });
+        });
+    </script>
+</body>
+</html>
