@@ -1,0 +1,15 @@
+{
+  "name": "3.2-express-http-request",
+  "version": "1.0.0",
+  "description": "http-request",
+  "license": "ISC",
+  "author": "siddesh",
+  "type": "module",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "dependencies": {
+    "express": "^5.2.1"
+  }
+}
