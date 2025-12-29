@@ -9,6 +9,7 @@
 .DS_Store
 Thumbs.db
 Desktop.ini
+.gitignore
 
 # Temporary files
 *.tmp
