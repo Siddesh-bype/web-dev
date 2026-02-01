@@ -1,0 +1,16 @@
+{
+  "name": "animelist",
+  "version": "1.0.0",
+  "description": "these website for searching animes and manges",
+  "license": "ISC",
+  "author": "Siddesh",
+  "type": "module",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "dependencies": {
+    "ejs": "^3.1.10",
+    "express": "^5.2.1"
+  }
+}

@@ -1,0 +1,5 @@
+export const LOADING_CONSTANTS = {
+  GLOBAL: 'global',
+  DEFAULT_TIMEOUT: 30000,
+  MIN_DURATION: 500,
+}
