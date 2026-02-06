@@ -1,13 +1,14 @@
 import React from "react";
-import ReactDOM from "react-dom";
+import { createRoot } from "react-dom/client";
+import * as pi from "Maths.js";
 
-ReactDOM.render(
+const root = createRoot(document.getElementById("root"));
+root.render(
   <ul>
-    <li>1</li>
-    <li>2</li>
-    <li>3</li>
-  </ul>,
-  document.getElementById("root")
+    <li>{pi.default}</li>
+    <li>{pi.doublepi()}</li>
+    <li>{pi.triplePi()}</li>
+  </ul>
 );
 
 // If you're running this locally in VS Code use the commands:
