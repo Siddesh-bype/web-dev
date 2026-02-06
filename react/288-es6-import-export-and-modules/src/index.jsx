@@ -1,10 +1,13 @@
 import React from "react";
-import { createRoot } from "react-dom/client";
-import App from "./components/App";
+import ReactDOM from "react-dom";
 
-const root = createRoot(document.getElementById("root"));
-root.render(
-  <App />
+ReactDOM.render(
+  <ul>
+    <li>1</li>
+    <li>2</li>
+    <li>3</li>
+  </ul>,
+  document.getElementById("root")
 );
 
 // If you're running this locally in VS Code use the commands:

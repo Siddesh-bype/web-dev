@@ -3,9 +3,7 @@ import { createRoot } from "react-dom/client";
 import App from "./components/App";
 
 const root = createRoot(document.getElementById("root"));
-root.render(
-  <App />
-);
+root.render(<App />);
 
 // If you're running this locally in VS Code use the commands:
 // npm install
