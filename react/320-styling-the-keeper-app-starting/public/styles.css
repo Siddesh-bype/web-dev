@@ -8,6 +8,9 @@ html {
 }
 body {
   background: #eee;
+/* background-color: #cc8800; */
+background-image: url("blob:https://www.transparenttextures.com/cf9ebc60-1eac-431a-b3ef-467e2ae123f2");
+/* This is mostly intended for prototyping; please download the pattern and re-host for production environments. Thank you! */
   padding: 0 16px;
 }
 
